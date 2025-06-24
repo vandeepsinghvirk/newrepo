@@ -1,12 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>portfolio</title>
-</head>
-<body>
-    <h1>this is hed</h1>
-    
-</body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background-color: #0d0d0d;
+        color: #fff;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      header {
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0px;
+        background-color: #0d0d0d;
+      }
+
+      .logo {
+        font-size: 35px;
+        font-weight: bold;
+        color: #03e9f4;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+      }
+
+      nav ul li {
+        font-size: 0.9rem;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .btn-contact {
+        padding: 10px 20px;
+        background-color: #03e9f4;
+        color: #0d0d0d;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #1a1a1a;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: 1;
+        border-radius: 5px;
+      }
+
+      .dropdown-content a {
+        color: #03e9f4;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 0.9rem;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #333;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* Hero Section */
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 60px;
+      }
+
+      .hero-img img {
+        width: 400px;
+        max-width: 100%;
+        border-radius: 8px;
+      }
+
+      .hero-content {
+        max-width: 600px;
+        margin-left: 40px;
+      }
+
+      .hero-content .subtitle {
+        color: #03e9f4;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      .hero-content h1 .highlight {
+        color: #03e9f4;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+        color: #ccc;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding: 40px;
+        }
+
+        .hero-content {
+          margin: 30px 0 0;
+          text-align: center;
+        }
+      }
+      section {
+        padding: 2rem;
+        max-width: 1000px;
+        margin: auto;
+        margin-top: 80px;
+      }
+      h2 {
+        font-size: 1.8rem;
+        color: #00f7ff;
+        margin-bottom: 1rem;
+      }
+      .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .tech-item {
+        background: #1a1d23;
+        padding: 0.6rem 1rem;
+        border-radius: 5px;
+        border: 1px solid #2a2d33;
+      }
+      .projects .project {
+        background: #1a1d23;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #00f7ff;
+      }
+      a {
+        color: #00f7ff;
+        text-decoration: none;
+      }
+      .contact p {
+        margin-bottom: 0.5rem;
+      }
+      .services-section {
+        text-align: center;
+        padding: 50px 20px;
+      }
+
+      .services-section h2 {
+        font-size: 36px;
+        color: white;
+      }
+
+      .services-section span {
+        color: #00e5ff;
+      }
+
+      .services-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .service-box {
+        background-color: #2e2e3f;
+        border-radius: 10px;
+        padding: 30px 20px;
+        width: 300px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .service-box:hover {
+        transform: translateY(-10px);
+      }
+
+      .service-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+      }
+
+      .service-box h3 {
+        margin-bottom: 15px;
+        font-size: 20px;
+      }
+
+      .service-box p {
+        font-size: 14px;
+        color: #ccc;
+        line-height: 1.6;
+      }
+
+      .read-more {
+        margin-top: 20px;
+        display: inline-block;
+        padding: 10px 25px;
+        background-color: #00e5ff;
+        color: #000;
+        border: none;
+        border-radius: 25px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .read-more:hover {
+        background-color: #00c0cc;
+      }
+      #diss {
+        display: none;
+      }
+      .butt {
+        padding: 10px 20px;
+        background-color: #03e9f4;
+        color: #0d0d0d;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">&#x1F47D; CodeWithVANDEEP</div>
+      <nav>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Services</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#more">More</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-right">
+        <div class="dropdown">
+          <button class="btn-contact">Contact ▼</button>
+          <div class="dropdown-content">
+            <a href="https://wa.me/917696495885" target="_blank">WhatsApp</a>
+            <a
+              href="https://www.instagram.com/vandeep_singh_virk/"
+              target="_blank"
+              >Instagram</a
+            >
+            <a href="https://t.me/your_username" target="_blank">Telegram</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="hero" class="hero">
+      <div class="hero-img">
+        <img src="./Screenshot 2025-06-24 121809.png" alt="Profile Image" />
+      </div>
+      <div class="hero-content">
+        <div class="subtitle">VANDEEP SINGH !</div>
+        <h1>I'm a <span class="highlight">Web Developer</span></h1>
+        <p>
+          I am working on professional, visually sophisticated and
+          technologically proficient, Responsive and multifunctional component
+        </p>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>About Me</h2>
+      <p>
+        I love creating responsive full-stack web apps using modern technologies
+        like Node.js and MongoDB. Passionate about clean code, performance, and
+        solving real-world problems with<span id="span">tech......</span
+        ><br /><br /><span id="diss">
+          I'm always eager to learn new technologies and stay up to date with
+          industry trends. Whether it's designing user interfaces or writing
+          server-side logic, I focus on clean code, performance, and a great
+          user experience.
+        </span>
+      </p>
+      <button class="butt" onclick="myfun()">Read more</button>
+    </section>
+
+    <section class="skills">
+      <h2>Tech Stack</h2>
+      <div class="tech-list">
+        <div class="tech-item">HTML</div>
+        <div class="tech-item">CSS</div>
+        <div class="tech-item">JavaScript</div>
+        <div class="tech-item">Node.js</div>
+        <div class="tech-item">Express</div>
+        <div class="tech-item">MongoDB</div>
+        <div class="tech-item">MySQL</div>
+        <div class="tech-item">EJS</div>
+        <div class="tech-item">Git</div>
+      </div>
+    </section>
+
+    <section class="projects">
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>Project 1: blinkit clone</h3>
+        <p>i make blinkit clone for my practise</p>
+        <p><strong>Tech Used:</strong> HTML, CSS, Node.js,</p>
+        <a href="#"></a>
+      </div>
+      <div class="project">
+        <h3>Project 2: Portfolio Website</h3>
+        <p>
+          This very portfolio! Built with clean, responsive design and dark
+          theme styling using HTML and CSS.
+        </p>
+        <p><strong>Tech Used:</strong> HTML, CSS</p>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2>Contact</h2>
+      <p>
+        📧 Email:
+        <a href="mailto:vandeepsingh2006@gmail.com"
+          >vandeepsingh2006@gmail.com</a
+        >
+      </p>
+    </section>
+
+    <section id="projects" class="services-section">
+      <h2>Our <span>Services</span></h2>
+      <div class="services-container">
+        <div class="service-box">
+          <div class="service-icon">💻</div>
+          <h3>Web Development</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
+            culpa voluptas nesciunt?
+          </p>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+
+        <div class="service-box">
+          <div class="service-icon">🖌️</div>
+          <h3>Graphic Design</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
+            culpa voluptas nesciunt?
+          </p>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+
+        <div class="service-box">
+          <div class="service-icon">📊</div>
+          <h3>Digital Marketing</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
+            culpa voluptas nesciunt?
+          </p>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+      </div>
+    </section>
+    <script>
+      let span = document.getElementById("diss");
+      let span1 = document.getElementById("span");
+      function myfun() {
+        span.style.display = "block";
+        span1.innerHTML = "tech";
+      }
+    </script>
+  </body>
 </html>

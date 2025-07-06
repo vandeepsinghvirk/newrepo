@@ -3,13 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+    <title>Portfolio | Vandeep Singh</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Arial", sans-serif;
+        font-family: "Poppins", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
@@ -24,19 +32,36 @@
 
       header {
         width: 100%;
-
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: fixed;
-        top: 0px;
+        top: 0;
+        left: 0;
+        padding: 15px 30px;
         background-color: #0d0d0d;
+        z-index: 1000;
       }
 
       .logo {
-        font-size: 35px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
         font-weight: bold;
         color: #03e9f4;
+      }
+
+      .logo-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #03e9f4;
+      }
+
+      nav {
+        position: relative;
       }
 
       nav ul {
@@ -44,14 +69,35 @@
         display: flex;
         gap: 30px;
       }
+      nav ul li a {
+        transition: all 0.3s ease;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+
+      nav ul li a:hover {
+        background-color: #03e9f4;
+        color: #0d0d0d;
+        font-weight: bold;
+      }
+      nav ul li a.active {
+        background-color: #03e9f4;
+        color: #0d0d0d;
+        font-weight: bold;
+      }
 
       nav ul li {
         font-size: 0.9rem;
       }
 
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
       .dropdown {
         position: relative;
-        display: inline-block;
       }
 
       .btn-contact {
@@ -64,53 +110,58 @@
         font-weight: bold;
       }
 
-      .dropdown-content {
+      .menu-toggle {
         display: none;
-        position: absolute;
-        right: 0;
-        background-color: #1a1a1a;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-        z-index: 1;
-        border-radius: 5px;
+        font-size: 28px;
+        cursor: pointer;
       }
 
-      .dropdown-content a {
-        color: #03e9f4;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        font-size: 0.9rem;
+      @media (max-width: 700px) {
+        nav ul {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          background-color: #1a1a1a;
+          padding: 20px;
+          border-radius: 10px;
+          z-index: 999;
+        }
+
+        nav ul.active {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
       }
 
-      .dropdown-content a:hover {
-        background-color: #333;
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-
-      /* Hero Section */
       .hero {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        padding: 60px;
+        justify-content: center;
+        gap: 40px;
+        padding: 140px 40px 80px;
+        flex-wrap: wrap;
+        background-color: #0d0d0d;
       }
 
       .hero-img img {
-        width: 400px;
-        max-width: 100%;
-        border-radius: 8px;
+        width: 250px;
+        max-width: 90%;
+        background-color: #000000;
+        border-radius: 15px;
+        padding: 10px;
       }
 
       .hero-content {
         max-width: 600px;
-        margin-left: 40px;
+        text-align: left;
       }
 
-      .hero-content .subtitle {
+      .subtitle {
         color: #03e9f4;
         font-size: 0.9rem;
         letter-spacing: 2px;
@@ -119,7 +170,8 @@
       }
 
       .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.8rem;
+        font-weight: 700;
         margin-bottom: 20px;
       }
 
@@ -129,65 +181,78 @@
 
       .hero-content p {
         font-size: 1rem;
-        margin-bottom: 30px;
         color: #ccc;
+        margin-bottom: 25px;
       }
 
-      @media (max-width: 900px) {
-        .hero {
-          flex-direction: column;
-          text-align: center;
-          padding: 40px;
-        }
-
-        .hero-content {
-          margin: 30px 0 0;
-          text-align: center;
-        }
+      .btn-download {
+        padding: 10px 25px;
+        background-color: #03e9f4;
+        color: #0d0d0d;
+        font-weight: bold;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
       }
+
+      .btn-download:hover {
+        background-color: #00c0cc;
+      }
+
       section {
         padding: 2rem;
         max-width: 1000px;
         margin: auto;
-        margin-top: 80px;
       }
+
       h2 {
         font-size: 1.8rem;
         color: #00f7ff;
         margin-bottom: 1rem;
+        text-align: center;
       }
+
       .tech-list {
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
+        justify-content: center;
       }
+
       .tech-item {
         background: #1a1d23;
         padding: 0.6rem 1rem;
         border-radius: 5px;
         border: 1px solid #2a2d33;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
+
+      .tech-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(3, 233, 244, 0.3);
+      }
+
       .projects .project {
         background: #1a1d23;
         padding: 1rem;
         margin-bottom: 1rem;
         border-left: 4px solid #00f7ff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
-      a {
-        color: #00f7ff;
-        text-decoration: none;
+
+      .projects .project:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(3, 233, 244, 0.3);
       }
+
       .contact p {
         margin-bottom: 0.5rem;
+        text-align: center;
       }
+
       .services-section {
         text-align: center;
         padding: 50px 20px;
-      }
-
-      .services-section h2 {
-        font-size: 36px;
-        color: white;
       }
 
       .services-section span {
@@ -247,60 +312,82 @@
       .read-more:hover {
         background-color: #00c0cc;
       }
-      #diss {
-        display: none;
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #111;
+        color: #ccc;
       }
-      .butt {
-        padding: 10px 20px;
-        background-color: #03e9f4;
-        color: #0d0d0d;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: bold;
+
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          align-items: center;
+          padding: 120px 20px 40px;
+          text-align: center;
+        }
+
+        .hero-content {
+          text-align: center;
+        }
+      }
+      .read-more-content {
+        margin-top: 10px;
+        color: #ccc;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      #more {
+        background-color: #1a1a1a;
+        border-radius: 10px;
+        margin-top: 40px;
+        padding: 40px 20px;
       }
     </style>
   </head>
   <body>
     <header>
-      <div class="logo">&#x1F47D; CodeWithVANDEEP</div>
+      <div class="logo">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB8Ene6Ai0v_cpUlhzJhmS4ph1iTGAAUjlWg&s"
+          alt="logo"
+          class="logo-img"
+        />
+        <span>CodeWithVANDEEP</span>
+      </div>
+
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
       <nav>
-        <ul>
+        <ul id="nav-menu">
           <li><a href="#hero">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Services</a></li>
-          <li><a href="#blog">Blog</a></li>
           <li><a href="#more">More</a></li>
         </ul>
       </nav>
-
       <div class="nav-right">
         <div class="dropdown">
-          <button class="btn-contact">Contact ▼</button>
-          <div class="dropdown-content">
-            <a href="https://wa.me/917696495885" target="_blank">WhatsApp</a>
-            <a
-              href="https://www.instagram.com/vandeep_singh_virk/"
-              target="_blank"
-              >Instagram</a
-            >
-            <a href="https://t.me/your_username" target="_blank">Telegram</a>
-          </div>
+          <button class="btn-contact"><a href="#contact">CONTACT</a></button>
         </div>
       </div>
     </header>
 
     <section id="hero" class="hero">
       <div class="hero-img">
-        <img src="./Screenshot 2025-06-24 121809.png" alt="Profile Image" />
+        <img src="/Screenshot 2025-06-24 121809.png" alt="Vandeep Singh" />
       </div>
       <div class="hero-content">
         <div class="subtitle">VANDEEP SINGH !</div>
         <h1>I'm a <span class="highlight">Web Developer</span></h1>
         <p>
           I am working on professional, visually sophisticated and
-          technologically proficient, Responsive and multifunctional component
+          technologically proficient,<br />
+          Responsive and multifunctional component
         </p>
+        <a href="/Vandeep Singh resume.pdf" download class="btn-download"
+          >Download CV</a
+        >
       </div>
     </section>
 
@@ -309,15 +396,15 @@
       <p>
         I love creating responsive full-stack web apps using modern technologies
         like Node.js and MongoDB. Passionate about clean code, performance, and
-        solving real-world problems with<span id="span">tech......</span
-        ><br /><br /><span id="diss">
+        solving real-world problems with <span id="span">tech......</span>
+        <br /><br /><span id="diss" style="display: none">
           I'm always eager to learn new technologies and stay up to date with
           industry trends. Whether it's designing user interfaces or writing
           server-side logic, I focus on clean code, performance, and a great
           user experience.
         </span>
       </p>
-      <button class="butt" onclick="myfun()">Read more</button>
+      <button class="btn-contact" onclick="myfun()">Read more</button>
     </section>
 
     <section class="skills">
@@ -338,10 +425,9 @@
     <section class="projects">
       <h2>Projects</h2>
       <div class="project">
-        <h3>Project 1: blinkit clone</h3>
-        <p>i make blinkit clone for my practise</p>
-        <p><strong>Tech Used:</strong> HTML, CSS, Node.js,</p>
-        <a href="#"></a>
+        <h3>Project 1: Blinkit Clone</h3>
+        <p>I made a Blinkit clone for practice</p>
+        <p><strong>Tech Used:</strong> HTML, CSS, Node.js</p>
       </div>
       <div class="project">
         <h3>Project 2: Portfolio Website</h3>
@@ -353,57 +439,192 @@
       </div>
     </section>
 
-    <section class="contact">
-      <h2>Contact</h2>
-      <p>
-        📧 Email:
-        <a href="mailto:vandeepsingh2006@gmail.com"
-          >vandeepsingh2006@gmail.com</a
-        >
-      </p>
-    </section>
-
     <section id="projects" class="services-section">
       <h2>Our <span>Services</span></h2>
       <div class="services-container">
+        <!-- Web Development -->
         <div class="service-box">
           <div class="service-icon">💻</div>
           <h3>Web Development</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-            culpa voluptas nesciunt?
+            Custom websites built using HTML, CSS, JavaScript, Node.js & MongoDB
+            for businesses and personal brands.
           </p>
-          <a href="#" class="read-more">Read More</a>
+          <div class="read-more-content" style="display: none">
+            <p>
+              I specialize in creating full-stack web apps that are fast,
+              secure, and responsive. From portfolio sites to e-commerce
+              platforms, I ensure SEO optimization and mobile compatibility.
+            </p>
+          </div>
+          <button class="read-more" onclick="toggleReadMore(this)">
+            Read More
+          </button>
         </div>
 
+        
         <div class="service-box">
           <div class="service-icon">🖌️</div>
-          <h3>Graphic Design</h3>
+          <h3>Responsive Website Design</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-            culpa voluptas nesciunt?
+            I design modern, mobile-first UI/UX interfaces that work seamlessly
+            on all devices and screen sizes.
           </p>
-          <a href="#" class="read-more">Read More</a>
+          <div class="read-more-content" style="display: none">
+            <p>
+              Using tools like Figma and frameworks like Bootstrap or custom
+              CSS, I craft intuitive, aesthetic designs that improve user
+              retention and conversion.
+            </p>
+          </div>
+          <button class="read-more" onclick="toggleReadMore(this)">
+            Read More
+          </button>
         </div>
 
         <div class="service-box">
           <div class="service-icon">📊</div>
           <h3>Digital Marketing</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-            culpa voluptas nesciunt?
+            Social media campaigns, SEO strategies, and analytics to grow your
+            online visibility and brand awareness.
           </p>
-          <a href="#" class="read-more">Read More</a>
+          <div class="read-more-content" style="display: none">
+            <p>
+              I provide customized growth strategies for Instagram, Facebook,
+              and Google. Services include content planning, hashtag research,
+              paid ad setup, and traffic monitoring using tools like Google
+              Analytics.
+            </p>
+          </div>
+          <button class="read-more" onclick="toggleReadMore(this)">
+            Read More
+          </button>
         </div>
       </div>
     </section>
+    <section id="more">
+      <h2>More About Me</h2>
+
+      <div
+        style="
+          max-width: 800px;
+          margin: auto;
+          text-align: left;
+          padding: 20px;
+          line-height: 1.6;
+          color: #ccc;
+        "
+      >
+        <h3 style="color: #03e9f4">🎓 Education</h3>
+        <ul style="padding-left: 20px">
+          <li>
+            <strong>Bachelor of Commerce (B.Com)</strong> - Pursuing from Khalsa
+            College, Amritsar
+          </li>
+          <li><strong>12th (CBSE)</strong> - Commerce Stream</li>
+          <li><strong>10th (CBSE)</strong> - General Education</li>
+        </ul>
+
+        <br />
+
+        <h3 style="color: #03e9f4">📜 Training & Certification</h3>
+        <ul style="padding-left: 20px">
+          <li>
+            <strong>MERN Stack Training</strong> - Cyber Core Technologies,
+            Mohali (6 Months)
+          </li>
+          <li>Responsive Web Design</li>
+          <li>JavaScript Essentials</li>
+        </ul>
+
+        <br />
+
+        <h3 style="color: #03e9f4">🧰 Additional Skills</h3>
+        <ul style="padding-left: 20px">
+          <li>Version Control: Git & GitHub</li>
+          <li>Hosting Platforms: Netlify, Vercel, Render</li>
+          <li>Templating Engines: EJS, Handlebars</li>
+          <li>Basic SEO & Performance Optimization</li>
+        </ul>
+
+        <br />
+
+        <h3 style="color: #03e9f4">💡 Hobbies & Interests</h3>
+        <ul style="padding-left: 20px">
+          <li>Exploring new web technologies</li>
+          <li>Gaming and streaming</li>
+          <li>Designing UI/UX mockups</li>
+          <li>Helping others learn coding</li>
+        </ul>
+
+        <br />
+
+        <h3 style="color: #03e9f4">🌐 Languages Known</h3>
+        <p>English, Hindi, Punjabi</p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>CONTACT WITH US:</h2>
+      <p>
+        📧 Email:
+        <a href="mailto:vandeepsingh2006@gmail.com"
+          >vandeepsingh2006@gmail.com</a
+        >
+      </p>
+      <p>
+        📱 WhatsApp:
+        <a href="https://wa.me/917696495885" target="_blank">Click to Chat</a>
+      </p>
+      <p>📞 Mobile: 7696495885</p>
+    </section>
+
+    <footer>&copy; 2025 Vandeep Singh. All rights reserved.</footer>
+
     <script>
-      let span = document.getElementById("diss");
-      let span1 = document.getElementById("span");
       function myfun() {
-        span.style.display = "block";
-        span1.innerHTML = "tech";
+        document.getElementById("diss").style.display = "block";
+        document.getElementById("span").innerHTML = "tech";
       }
+
+      function toggleMenu() {
+        const menu = document.getElementById("nav-menu");
+        menu.classList.toggle("active");
+      }
+
+  
+      document.querySelectorAll("nav ul li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          document.getElementById("nav-menu").classList.remove("active");
+        });
+      });
+      function toggleReadMore(button) {
+        const content = button.previousElementSibling;
+        const isVisible = content.style.display === "block";
+        content.style.display = isVisible ? "none" : "block";
+        button.textContent = isVisible ? "Read More" : "Show Less";
+      }
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll("nav ul li a");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 100;
+          if (pageYOffset >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
+          }
+        });
+      });
     </script>
   </body>
 </html>
